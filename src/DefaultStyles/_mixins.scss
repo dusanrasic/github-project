@@ -1,0 +1,28 @@
+@mixin box-bottom($width, $height, $top, $left) {
+	&:before{
+		content: '';
+		position: absolute;
+		top: $top;
+		left: $left;
+		width: $width;
+		height: $height;
+		background-color: rgba(0, 0, 0, 0.600);
+		-ms-transform: skewX(30deg); /* IE 9 */
+  		-webkit-transform: skewX(30deg); /* Safari */
+ 		transform: skewX(30deg);
+	}
+}
+@mixin box-right($width, $height, $top, $left){
+	&:after{
+		content: '';
+		position: absolute;
+		top: $top;
+		left: $left;
+		width: $width;
+		height: $height;
+		background-color: rgba(0, 0, 0, 0.600);
+		-ms-transform: skewY(60deg); /* IE 9 */
+  		-webkit-transform: skewY(60deg); /* Safari */
+		 transform: skewY(60deg);
+	}
+}

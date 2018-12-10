@@ -1,0 +1,30 @@
+@import '../../DefaultStyles/variables';
+@import '../../DefaultStyles/mixins';
+
+.el-Input{
+	width: 400px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@include box-bottom(400px, 10px, 170px, 53px);
+	@include box-right(6px, 100px, 75px, 450px);
+	box-sizing: border-box;
+	background-color: $background-color-dimmed;
+	&-text{
+		width: 300px;
+		height: 50px;
+		border: none;
+		border-bottom: 1px dotted $border-color;
+		background-color: $transparent;
+		color: $color;
+		font-family: $font-family;
+		font-weight: $font-weight-regular;
+		font-size: $font-size-normal;
+		box-sizing: border-box;
+		padding: 0 5px;
+		&:focus{
+			outline: none;
+		}
+	}
+}
