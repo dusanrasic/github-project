@@ -1,2 +1,3 @@
 export const INITIALIZE_START = 'INITIALIZE_START';
 export const INITIALIZE_END = 'INITIALIZE_END';
+export const SEARCH_USER = 'SEARCH_USER';

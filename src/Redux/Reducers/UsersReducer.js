@@ -16,6 +16,10 @@ export default function(state = initialState, action){
 				loading: false,
 				UsersList: action.payload
 			};
+		case types.SEARCH_USER:
+			return {
+				UsersList: action.payload
+			};
 		default:
 			return { ...state };
 	}

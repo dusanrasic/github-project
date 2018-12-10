@@ -16,3 +16,15 @@ export const initialize = () => (dispatch) => {
 		// console.error(error);
 	});
 };
+export const searchUser = (username) => (dispatch) => {
+	return api.get(`/search/users?q=${username}`)
+	.then(res => {
+		dispatch({
+			type: types.SEARCH_USER,
+			payload: res.items
+		});
+	})
+	.catch((error) => {
+		// console.error(error);
+	});
+};
