@@ -4,7 +4,7 @@ import ENV from './env';
 export const getApiEndpoint = url => ENV.api.base_url + url;
 
 export const request = opts => {
-	if(!opts.url){
+	if (!opts.url){
 		throw new Error('url is required');
 	}
 	opts.baseURL = ENV.api.base_url;

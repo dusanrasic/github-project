@@ -18,10 +18,11 @@ class Wrapper extends Component {
 	}
   render() {
 		const {users} = this.props;
+
 		return (
 			<div className={CLASS}>
 				<Search />
-				<Users data={users}/>
+				<Users users={users}/>
 			</div>
 		);
   }
@@ -42,7 +43,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
 	return {
-		users: state.data.users,
+		users: state.users.UsersList,
 	};
 };
 

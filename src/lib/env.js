@@ -1,6 +1,6 @@
 
-const ENV = {
-	api:{
+export const ENV = {
+	api: {
 		base_url: 'https://api.github.com/'
 	}
 };

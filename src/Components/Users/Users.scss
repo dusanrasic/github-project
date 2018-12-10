@@ -5,10 +5,14 @@
 	width: 400px;
 	height: 700px;
 	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	@include box-bottom(400px, 10px, 909px, 53px);
 	@include box-right(6px, 700px, 214px, 450px);
 	box-sizing: border-box;
+	padding: 50px;
 	background-color: $background-color-dimmed;
+	overflow-y: scroll;
 }
