@@ -2,13 +2,11 @@
 @import '../../DefaultStyles/mixins';
 
 .el-Input{
-	width: 400px;
+	width: 300px;
 	height: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	@include box-bottom(400px, 10px, 170px, 53px);
-	@include box-right(6px, 100px, 75px, 450px);
 	box-sizing: border-box;
 	background-color: $background-color-dimmed;
 	&-text{

@@ -1,0 +1,30 @@
+@import '../../DefaultStyles/variables';
+
+.el-Button{
+	display: flex;
+	width: 36px;
+	height: 36px;
+	transition: all 0.3s ease-in-out;
+	background-color: darkgray;
+	border-radius: 25px;
+	color: $color;
+	justify-content: center;
+	align-items: center;
+	opacity: 0.6;
+	box-sizing: border-box;
+	margin: 2px;
+	&-disabled{
+		display: none;
+	}
+	&:hover{
+		opacity: 1;
+		cursor: pointer;
+	}
+	.fa, .fa-search{
+		width: 18px;
+		height: 18px;
+		font-size: 18px;
+		font-weight: lighter;
+		text-align: center;
+	}
+}

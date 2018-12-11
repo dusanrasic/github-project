@@ -2,17 +2,22 @@
 @import '../../DefaultStyles/mixins';
 
 .el-Users{
-	width: 400px;
+	width: 450px;
 	height: 700px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	@include box-bottom(400px, 10px, 909px, 53px);
-	@include box-right(6px, 700px, 214px, 450px);
+	@include box-bottom(450px, 10px, 904px, 53px);
+	@include box-right(6px, 700px, 209px, 500px);
 	box-sizing: border-box;
 	padding: 50px;
+	margin: 0;
 	background-color: $background-color-dimmed;
 	overflow-y: scroll;
+}
+a{
+	text-decoration: none;
+	color: $color;
 }

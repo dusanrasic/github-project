@@ -1,0 +1,18 @@
+@import '../../DefaultStyles/variables';
+@import '../../DefaultStyles/mixins';
+
+.el-Repos{
+	width: 1000px;
+	height: 700px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	@include box-bottom(1000px, 10px, 904px, 553px);
+	@include box-right(6px, 700px, 209px, 1550px);
+	box-sizing: border-box;
+	margin: 0 50px;
+	background-color: $background-color-dimmed;
+	overflow-y: scroll;
+}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Search from '../Search/Search';
 import Users from '../Users/Users';
+import Repos from '../Repos/Repos';
+import {BrowserRouter, Route} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,10 +22,20 @@ class Wrapper extends Component {
 		const {users} = this.props;
 
 		return (
-			<div className={CLASS}>
-				<Search />
-				<Users users={users}/>
-			</div>
+			<BrowserRouter>
+				<div className={CLASS}>
+					<Search />
+					<div className='el-Empty-Space'/>
+					<Users users={users}/>
+					<Route path='/g/:login' render={
+						({match}) => (
+							<Repos repos={
+								users.find(u => u.login === match.params.login)
+							} />
+						)
+					}/>
+				</div>
+			</BrowserRouter>
 		);
   }
 }

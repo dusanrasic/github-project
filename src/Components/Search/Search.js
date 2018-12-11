@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Input} from '../Input/Input';
+import {Button} from '../Button/Button';
+
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {searchUser, initialize} from '../../Redux/Actions/UsersActions';
@@ -26,11 +28,10 @@ class Search extends Component {
 		this.setState({
 			searchValue: e.target.value
 		},
-		this.handleSearch
 		);
 	}
 
-	handleSearch = () => {
+	handleClick = () => {
 		const {searchUser} = this.props;
 		searchUser(this.state.searchValue);
 	}
@@ -40,6 +41,10 @@ class Search extends Component {
 				<div className={CLASS}>
 					<Input 
 						onChange = {this.handleChange}
+					/>
+					<Button 
+						icon = 'search'
+						onClick = {this.handleClick}
 					/>
 				</div>
 			);

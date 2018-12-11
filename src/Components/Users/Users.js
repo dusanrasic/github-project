@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import User from '../User/User';
 
 import './Users.scss';
@@ -26,11 +27,13 @@ export default class Users extends Component {
 		let {id, avatar_url, login} = value;
 		return (
 			<div key={id}>
-				<User 
-					id={id}
-					avatar={avatar_url}
-					login={login}
-				/>
+				<Link to={`/g/${login}`}>
+					<User 
+						id={id}
+						avatar={avatar_url}
+						login={login}
+					/>
+				</Link>
 			</div>
 		);
 	}

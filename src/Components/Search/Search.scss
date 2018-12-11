@@ -1,0 +1,14 @@
+@import '../../DefaultStyles/variables';
+@import '../../DefaultStyles/mixins';
+
+.el-Search{
+	display: flex;
+	width: 450px;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	box-sizing: border-box;
+	padding-top: 30px;
+	@include box-bottom(450px, 10px, 170px, 53px);
+	@include box-right(6px, 100px, 75px, 500px);
+}
