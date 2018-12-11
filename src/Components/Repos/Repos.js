@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
 
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {getRepos} from '../../Redux/Actions/UsersActions';
+
 import './Repos.scss';
 
 const CLASS = 'el-Repos';
 
-export default class Repos extends Component {
+class Repos extends Component {
 	
-	componentDidMount(){
-		const {repos} = this.props;
-		console.log(repos, 'repos');
+	componentDidUpdate(prevProps){
+		const tmpRepo = this.props.repos ? this.props.repos: null;
+		console.log(tmpRepo, 'tmp');
+		
+		if (this.props.repos !== prevProps.repos) {
+			const {repos} = this.props;
+		
+			const {getRepos} = this.props;
+			getRepos(repos.login);
+
+			console.log(repos.login, 'repos');
+		  }
+		
+		
 	}
 
 	renderRepos = () => {
-		const {repos} = this.props;
-		const noData = repos && !repos.length;
+		const {list} = this.props;
+		const noData = list && !list.length;
 
 		if (noData){
 			return 'No repos...';
 		}
 
-		return repos.map(this.renderRepo);
+		return list.map(this.renderRepo);
 	}
 
 	renderRepo = (value) => {
@@ -37,3 +52,22 @@ export default class Repos extends Component {
 		);
 	}
 }
+Repos.propTypes = {
+	getRepos: PropTypes.func.isRequired,
+	list: PropTypes.array.isRequired,
+};
+
+Repos.defaultProps = {
+	list: [],
+};
+
+const mapDispatchToProps = {
+	getRepos: getRepos,
+};
+const mapStateToProps = state => {
+	return {
+		list: state.users.ReposList,
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Repos);
