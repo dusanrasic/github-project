@@ -10,31 +10,31 @@ const CLASS = 'el-Repos';
 
 class Repos extends Component {
 	
-	componentDidUpdate(prevProps){
-		const tmpRepo = this.props.repos ? this.props.repos: null;
-		console.log(tmpRepo, 'tmp');
-		
-		if (this.props.repos !== prevProps.repos) {
-			const {repos} = this.props;
-		
-			const {getRepos} = this.props;
-			getRepos(repos.login);
+	componentDidMount(){
+			const {repos, getRepos} = this.props;
+			const {login} = repos;
 
-			console.log(repos.login, 'repos');
-		  }
-		
-		
+			if (login !== null){
+				getRepos(login);
+			}
 	}
-
+	componentDidUpdate(prevProps){
+		if (this.props.repos !== prevProps.repos){
+			const {repos, getRepos} = this.props;
+			const {login} = repos;
+			if (login !== null){
+				getRepos(login);
+			}
+		}
+	}
 	renderRepos = () => {
-		const {list} = this.props;
-		const noData = list && !list.length;
+		const {ReposList} = this.props;
+		const noData = ReposList && !ReposList.length;
 
 		if (noData){
 			return 'No repos...';
 		}
-
-		return list.map(this.renderRepo);
+		return ReposList.map(this.renderRepo);
 	}
 
 	renderRepo = (value) => {
@@ -54,11 +54,11 @@ class Repos extends Component {
 }
 Repos.propTypes = {
 	getRepos: PropTypes.func.isRequired,
-	list: PropTypes.array.isRequired,
+	ReposList: PropTypes.array.isRequired,
 };
 
 Repos.defaultProps = {
-	list: [],
+	ReposList: [],
 };
 
 const mapDispatchToProps = {
@@ -66,7 +66,7 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = state => {
 	return {
-		list: state.users.ReposList,
+		ReposList: state.users.ReposList,
 	};
 };
 

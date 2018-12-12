@@ -1,21 +1,21 @@
 @import '../../DefaultStyles/variables';
-@import '../../DefaultStyles/mixins';
 
 .el-Users{
 	width: 450px;
-	height: 700px;
+	height: 500px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	@include box-bottom(450px, 10px, 904px, 53px);
-	@include box-right(6px, 700px, 209px, 500px);
 	box-sizing: border-box;
 	padding: 50px;
 	margin: 0;
 	background-color: $background-color-dimmed;
 	overflow-y: scroll;
+	-moz-box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
+	box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
 }
 a{
 	text-decoration: none;

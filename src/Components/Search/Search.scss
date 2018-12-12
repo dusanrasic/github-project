@@ -1,5 +1,4 @@
 @import '../../DefaultStyles/variables';
-@import '../../DefaultStyles/mixins';
 
 .el-Search{
 	display: flex;
@@ -9,6 +8,7 @@
 	align-items: center;
 	box-sizing: border-box;
 	padding-top: 30px;
-	@include box-bottom(450px, 10px, 170px, 53px);
-	@include box-right(6px, 100px, 75px, 500px);
+	-moz-box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
+	box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
 }
