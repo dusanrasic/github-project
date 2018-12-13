@@ -16,9 +16,9 @@ class Repos extends Component {
 		const {repos, getRepos} = this.props;
 		const {login} = repos;
 
-		const noLogin = login && !login.length;
+		const noRepos = repos && !repos.length;
 
-		if (noLogin){
+		if (noRepos){
 			return 'No selected user';
 		}
 		getRepos(login);
@@ -29,9 +29,9 @@ class Repos extends Component {
 			const {repos, getRepos} = this.props;
 			const {login} = repos;
 
-			const noLogin = login && !login.length;
+			const noRepos = repos && !repos.length;
 
-			if (noLogin){
+			if (noRepos){
 				return 'No selected user';
 			}
 			getRepos(login);
@@ -67,6 +67,11 @@ class Repos extends Component {
 
 	render() {
 		let {repos} = this.props;
+		const noData = repos && !repos.length;
+
+		if (noData){
+			return this.renderRepos();
+		}
 		let {avatar_url, login} = repos;
 
 		return (
