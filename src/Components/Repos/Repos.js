@@ -12,14 +12,29 @@ const CLASS = 'el-Repos';
 class Repos extends Component {
 	
 	componentDidMount(){
+		const {repos, getRepos} = this.props;
+		const {login} = repos;
+
+		const noLogin = login && !login.length;
+
+		if (noLogin){
+			return 'No selected user';
+		}
+		getRepos(login);
+	}
+
+	componentDidUpdate(prevProps){
+		if (this.props.repos.login !== prevProps.repos.login){
 			const {repos, getRepos} = this.props;
 			const {login} = repos;
+
 			const noLogin = login && !login.length;
 
 			if (noLogin){
 				return 'No selected user';
 			}
 			getRepos(login);
+		}
 	}
 
 	renderRepos = () => {
@@ -71,7 +86,7 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = state => {
 	return {
-		ReposList: state.users.ReposList,
+		ReposList: state.repos.ReposList,
 	};
 };
 

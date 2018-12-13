@@ -24,7 +24,6 @@ class Wrapper extends Component {
 			<BrowserRouter>
 				<div className={CLASS}>
 					<Search />
-					<div className='el-Empty-Space'/>
 					<Users users={users}/>
 					<Route path='/g/:login' render={
 						({match}) => (

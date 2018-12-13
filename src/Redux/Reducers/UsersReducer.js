@@ -21,10 +21,6 @@ export default function(state = initialState, action){
 			return {
 				UsersList: action.payload
 			};
-		case types.GET_REPOS:			
-			return {
-				ReposList: [...action.payload]
-			};
 		default:
 			return { ...state };
 	}

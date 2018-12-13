@@ -7,12 +7,8 @@
 	box-sizing: border-box;
 	padding: 50px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	justify-content: space-around;
 	align-items: flex-start;
-	.el-Empty-Space{
-		width: 700px;
-		height: 100px;
-	}
 }
