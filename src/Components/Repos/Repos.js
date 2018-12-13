@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import User from '../User/User';
 import Repo from '../Repo/Repo';
 
 import {connect} from 'react-redux';
@@ -65,8 +66,16 @@ class Repos extends Component {
 	}
 
 	render() {
+		let {repos} = this.props;
+		let {avatar_url, login} = repos;
+
 		return (
 			<div className={CLASS}>
+				<User 
+					avatar={avatar_url}
+					login={login}
+				/>
+				<div className='el-Separator'/>
 				{this.renderRepos()}
 			</div>
 		);
