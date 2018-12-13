@@ -23,7 +23,7 @@ export default function(state = initialState, action){
 			};
 		case types.GET_REPOS:			
 			return {
-				ReposList: action.payload
+				ReposList: [...action.payload]
 			};
 		default:
 			return { ...state };

@@ -18,9 +18,8 @@ class Wrapper extends Component {
 		const {initializeApp} = this.props;
 		initializeApp && initializeApp();
 	}
-  render() {
+	render() {
 		const {users} = this.props;
-
 		return (
 			<BrowserRouter>
 				<div className={CLASS}>
@@ -37,7 +36,7 @@ class Wrapper extends Component {
 				</div>
 			</BrowserRouter>
 		);
-  }
+	}
 }
 
 Wrapper.propTypes = {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Repo from '../Repo/Repo';
 
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -13,20 +14,14 @@ class Repos extends Component {
 	componentDidMount(){
 			const {repos, getRepos} = this.props;
 			const {login} = repos;
+			const noLogin = login && !login.length;
 
-			if (login !== null){
-				getRepos(login);
+			if (noLogin){
+				return 'No selected user';
 			}
+			getRepos(login);
 	}
-	componentDidUpdate(prevProps){
-		if (this.props.repos !== prevProps.repos){
-			const {repos, getRepos} = this.props;
-			const {login} = repos;
-			if (login !== null){
-				getRepos(login);
-			}
-		}
-	}
+
 	renderRepos = () => {
 		const {ReposList} = this.props;
 		const noData = ReposList && !ReposList.length;
@@ -34,6 +29,7 @@ class Repos extends Component {
 		if (noData){
 			return 'No repos...';
 		}
+
 		return ReposList.map(this.renderRepo);
 	}
 
@@ -41,7 +37,16 @@ class Repos extends Component {
 		if (!value){
 			return;
 		}
-		return value;
+		let {id, description, html_url, name} = value;
+		return (
+			<div key={id}>
+				<Repo 
+					description={description}
+					url={html_url}
+					name={name}
+				/>
+			</div>
+		);
 	}
 
 	render() {

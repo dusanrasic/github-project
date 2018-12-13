@@ -1,0 +1,25 @@
+.el-Repo{
+	width: 300px;
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	margin: 10px 0;
+	-moz-box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
+	box-shadow: 3px 6px 8px 5px rgba(0, 0, 0, 0.6);
+	justify-content: center;
+	align-items: center;
+	p{
+		width: 300px;
+		height: 50px;
+		&:nth-child(2){
+			height: 80px;
+		}
+	}
+	.el-Button{
+		width: 250px;
+		height: 30px;
+		border-radius: 2px;
+	}
+}
