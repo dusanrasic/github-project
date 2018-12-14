@@ -9,8 +9,17 @@ export const request = opts => {
 	}
 	opts.baseURL = ENV.api.base_url;
 	opts.method = opts.method || 'get';
+	const parsedUrl = new URL(opts.url, ENV.api.base_url);
+	if (!parsedUrl.searchParams.has('client_id')) {
+		parsedUrl.searchParams.append('client_id', ENV.api.client_id);
+	}
+	if (!parsedUrl.searchParams.has('client_secret')) {
+		parsedUrl.searchParams.append('client_secret', ENV.api.client_secret);
+	}
 
-	return axios(opts)
+	const url = parsedUrl.toString();
+	
+	return axios({...opts, url})
 		.then(res => {
 			return res.data;
 		})

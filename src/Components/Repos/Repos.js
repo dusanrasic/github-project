@@ -13,8 +13,8 @@ const CLASS = 'el-Repos';
 class Repos extends Component {	
 
 	componentDidMount(){
-		const {repos, getRepos} = this.props;
-		
+		const {repos, getRepos} = this.props;		
+
 		const noRepos = repos;
 		
 		if (!noRepos){

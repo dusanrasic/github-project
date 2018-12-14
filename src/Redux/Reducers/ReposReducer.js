@@ -1,7 +1,8 @@
 import * as types from '../Actions/types';
 
 const initialState = {
-	ReposList: []
+	ReposList: [],
+	error: null
 };
 
 export default function(state = initialState, action){
@@ -9,6 +10,10 @@ export default function(state = initialState, action){
 		case types.GET_REPOS:			
 			return {
 				ReposList: [...action.payload]
+			};
+		case types.ERROR_OCCURRED:
+			return {
+				error: action.payload
 			};
 		default:
 			return { ...state };

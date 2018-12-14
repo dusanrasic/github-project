@@ -13,7 +13,10 @@ export const initialize = () => (dispatch) => {
 		});
 	})
 	.catch((error) => {
-		// console.error(error);
+		dispatch({
+			type: types.ERROR_OCCURRED,
+			payload: error
+		});
 	});
 };
 export const searchUser = (username) => (dispatch) => {
@@ -25,7 +28,10 @@ export const searchUser = (username) => (dispatch) => {
 		});
 	})
 	.catch((error) => {
-		// console.error(error);
+		dispatch({
+			type: types.ERROR_OCCURRED,
+			payload: error
+		});
 	});
 };
 export const getRepos = (reposUrl) => (dispatch) => {
@@ -37,6 +43,9 @@ export const getRepos = (reposUrl) => (dispatch) => {
 		});
 	})
 	.catch((error) => {
-		// console.error(error);
+		dispatch({
+			type: types.ERROR_OCCURRED,
+			payload: error
+		});
 	});
 };

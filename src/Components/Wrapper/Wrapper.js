@@ -25,7 +25,7 @@ class Wrapper extends Component {
 				<div className={CLASS}>
 					<Search />
 					<Users users={users}/>
-					<Route path='/g/:login' render={
+					<Route path='/:login' render={
 						({match}) => (
 							<Repos repos={
 								users.find(u => u.login === match.params.login)

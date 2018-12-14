@@ -27,7 +27,7 @@ export default class Users extends Component {
 		let {id, avatar_url, login} = value;
 		return (
 			<div key={id}>
-				<Link to={`/g/${login}`}>
+				<Link to={`${login}`}>
 					<User 
 						id={id}
 						avatar={avatar_url}
