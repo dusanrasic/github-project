@@ -10,30 +10,32 @@ import './Repos.scss';
 
 const CLASS = 'el-Repos';
 
-class Repos extends Component {
-	
+class Repos extends Component {	
+
 	componentDidMount(){
 		const {repos, getRepos} = this.props;
-		const {login} = repos;
-
-		const noRepos = repos && !repos.length;
-
-		if (noRepos){
-			return 'No selected user';
+		
+		const noRepos = repos;
+		
+		if (!noRepos){
+			return;
 		}
+		const {login} = repos;
 		getRepos(login);
 	}
 
 	componentDidUpdate(prevProps){
-		if (this.props.repos.login !== prevProps.repos.login){
-			const {repos, getRepos} = this.props;
+		const {repos, getRepos} = this.props;
+		
+		const noRepos = repos;
+		
+		if (!noRepos){
+			return;
+		}
+		if (repos!== prevProps.repos){
+			
 			const {login} = repos;
-
-			const noRepos = repos && !repos.length;
-
-			if (noRepos){
-				return 'No selected user';
-			}
+			
 			getRepos(login);
 		}
 	}
@@ -41,6 +43,7 @@ class Repos extends Component {
 	renderRepos = () => {
 		const {ReposList} = this.props;
 		const noData = ReposList && !ReposList.length;
+
 
 		if (noData){
 			return 'No repos...';
@@ -65,27 +68,36 @@ class Repos extends Component {
 		);
 	}
 
-	render() {
+	renderUser = () => {
 		let {repos} = this.props;
-		const noData = repos && !repos.length;
-
-		if (noData){
-			return this.renderRepos();
-		}
 		let {avatar_url, login} = repos;
 
+		const noRepos = repos;
+
+		if (!noRepos){
+			return 'No selected user...';
+		}
+
+		return (
+			<User 
+				avatar={avatar_url}
+				login={login}
+			/>
+		);
+	}
+
+	render() {
+		let {repos} = this.props;
 		return (
 			<div className={CLASS}>
-				<User 
-					avatar={avatar_url}
-					login={login}
-				/>
-				<div className='el-Separator'/>
-				{this.renderRepos()}
+				{repos && this.renderUser()}
+				{repos && <div className='el-Separator'/>}
+				{repos && this.renderRepos()}
 			</div>
 		);
 	}
 }
+
 Repos.propTypes = {
 	getRepos: PropTypes.func.isRequired,
 	ReposList: PropTypes.array.isRequired,
