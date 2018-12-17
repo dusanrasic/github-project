@@ -19,10 +19,11 @@ class Wrapper extends Component {
 		initializeApp && initializeApp();
 	}
 	render() {
-		const {users} = this.props;
+		const {users, error} = this.props;
 		return (
 			<BrowserRouter>
-				<div className={CLASS}>
+				{!error &&
+					<div className={CLASS}>
 					<Search />
 					<Users users={users}/>
 					<Route path='/:login' render={
@@ -33,6 +34,7 @@ class Wrapper extends Component {
 						)
 					}/>
 				</div>
+				}
 			</BrowserRouter>
 		);
 	}
@@ -41,6 +43,7 @@ class Wrapper extends Component {
 Wrapper.propTypes = {
 	initializeApp: PropTypes.func.isRequired,
 	users: PropTypes.array.isRequired,
+	error: PropTypes.string
 };
 
 Wrapper.defaultProps = {
@@ -54,6 +57,7 @@ const mapDispatchToProps = {
 const mapStateToProps = state => {
 	return {
 		users: state.users.UsersList,
+		error: state.users.error && state.repos.error
 	};
 };
 
