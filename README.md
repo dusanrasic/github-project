@@ -1,3 +1,0 @@
-# GITHUB PROJECT 
-## App uses user's public github api's , display user's and their repositories...
-###### App uses React, Redux ..
