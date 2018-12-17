@@ -4,7 +4,7 @@ import Repo from '../Repo/Repo';
 
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {getRepos} from '../../Redux/Actions/UsersActions';
+import {getRepos} from '../../Redux/Actions/ReposActions';
 
 import './Repos.scss';
 
@@ -12,44 +12,53 @@ const CLASS = 'el-Repos';
 
 class Repos extends Component {	
 
-	componentDidMount(){
-		const {repos, getRepos} = this.props;		
+	static propTypes = {
+		getRepos: PropTypes.func.isRequired,
+		reposList: PropTypes.array.isRequired,
+	};
 
-		const noRepos = repos;
+	static defaultProps = {
+		reposList: [],
+	};
+
+	componentDidMount(){
+		const {reposUser, getRepos} = this.props;		
+
+		const noRepos = reposUser;
 		
 		if (!noRepos){
 			return;
 		}
-		const {login} = repos;
+		const {login} = reposUser;
 		getRepos(login);
 	}
 
 	componentDidUpdate(prevProps){
-		const {repos, getRepos} = this.props;
+		const {reposUser, getRepos} = this.props;
 		
-		const noRepos = repos;
+		const noRepos = reposUser;
 		
 		if (!noRepos){
 			return;
 		}
-		if (repos!== prevProps.repos){
+		if (reposUser!== prevProps.repos){
 			
-			const {login} = repos;
+			const {login} = reposUser;
 			
 			getRepos(login);
 		}
 	}
 
 	renderRepos = () => {
-		const {ReposList} = this.props;
-		const noData = ReposList && !ReposList.length;
+		const {reposList} = this.props;
+		const noData = reposList && !reposList.length;
 
 
 		if (noData){
-			return 'No repos...';
+			return 'No repositories...';
 		}
 
-		return ReposList.map(this.renderRepo);
+		return reposList.map(this.renderRepo);
 	}
 
 	renderRepo = (value) => {
@@ -69,10 +78,10 @@ class Repos extends Component {
 	}
 
 	renderUser = () => {
-		let {repos} = this.props;
-		let {avatar_url, login} = repos;
+		let {reposUser} = this.props;
+		let {avatar_url, login} = reposUser;
 
-		const noRepos = repos;
+		const noRepos = reposUser;
 
 		if (!noRepos){
 			return 'No selected user...';
@@ -86,33 +95,30 @@ class Repos extends Component {
 		);
 	}
 
+	renderSeparator = () => {
+		return (
+			<div className='el-Separator'/>
+		);
+	}
+
 	render() {
-		let {repos} = this.props;
+		let {reposUser} = this.props;
 		return (
 			<div className={CLASS}>
-				{repos && this.renderUser()}
-				{repos && <div className='el-Separator'/>}
-				{repos && this.renderRepos()}
+				{reposUser && this.renderUser()}
+				{reposUser && this.renderSeparator()}
+				{reposUser && this.renderRepos()}
 			</div>
 		);
 	}
 }
-
-Repos.propTypes = {
-	getRepos: PropTypes.func.isRequired,
-	ReposList: PropTypes.array.isRequired,
-};
-
-Repos.defaultProps = {
-	ReposList: [],
-};
 
 const mapDispatchToProps = {
 	getRepos: getRepos,
 };
 const mapStateToProps = state => {
 	return {
-		ReposList: state.repos.ReposList,
+		reposList: state.repos.reposList,
 	};
 };
 

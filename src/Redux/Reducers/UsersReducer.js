@@ -1,7 +1,7 @@
 import * as types from '../Actions/types';
 
 const initialState = {
-	UsersList: [],
+	usersList: [],
 	error: null,
 	loading: false
 };
@@ -10,19 +10,26 @@ export default function(state = initialState, action){
 	switch (action.type) {
 		case types.INITIALIZE_START:
 			return {
+				...state,
+				error: null,
 				loading: true
 			};
 		case types.INITIALIZE_END:
 			return {
+				...state,
+				error: null,
 				loading: false,
-				UsersList: action.payload
+				usersList: action.payload
 			};
 		case types.SEARCH_USER:
 			return {
-				UsersList: action.payload
+				...state,
+				error: null,
+				usersList: action.payload
 			};
 		case types.ERROR_OCCURRED:
 			return {
+				...state,
 				error: action.payload
 			};
 		default:

@@ -14,41 +14,50 @@ const CLASS='el-Wrapper';
 
 class Wrapper extends Component {
 
+	static propTypes = {
+		initializeApp: PropTypes.func.isRequired,
+		usersList: PropTypes.array.isRequired,
+		error: PropTypes.object
+	};
+	
+	static defaultProps = {
+		usersList: [],
+	};
+
 	componentDidMount(){
 		const {initializeApp} = this.props;
 		initializeApp && initializeApp();
 	}
+	handleError = () => {
+		const {error} = this.props;
+		if (error){
+			return error;
+		}
+	}
 	render() {
-		const {users, error} = this.props;
+		const {usersList} = this.props;
 		return (
 			<BrowserRouter>
-				{!error &&
-					<div className={CLASS}>
-					<Search />
-					<Users users={users}/>
-					<Route path='/:login' render={
-						({match}) => (
-							<Repos repos={
-								users.find(u => u.login === match.params.login)
-							} />
-						)
-					}/>
+				<div className={CLASS}>
+						{this.handleError()}
+						<div className={CLASS+'-data'}>
+							<Search />
+							<Users 
+								usersList={usersList}
+							/>
+							<Route path='/:login' render={
+								({match}) => (
+									<Repos reposUser={
+										usersList.find(u => u.login === match.params.login)
+									} />
+								)
+							}/>
+						</div>
 				</div>
-				}
 			</BrowserRouter>
 		);
 	}
 }
-
-Wrapper.propTypes = {
-	initializeApp: PropTypes.func.isRequired,
-	users: PropTypes.array.isRequired,
-	error: PropTypes.string
-};
-
-Wrapper.defaultProps = {
-	users: [],
-};
 
 const mapDispatchToProps = {
 	initializeApp: initialize,
@@ -56,7 +65,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
 	return {
-		users: state.users.UsersList,
+		usersList: state.users.usersList,
 		error: state.users.error && state.repos.error
 	};
 };

@@ -9,14 +9,14 @@ const CLASS = 'el-Users';
 export default class Users extends Component {
 
 	renderUsers = () => {
-		const {users} = this.props;
-		const noData = users && !users.length;
+		const {usersList} = this.props;		
+		const noData = usersList && !usersList.length;
 
 		if (noData){
 			return 'No users...';
 		}
 
-		return users.map(this.renderUser);
+		return usersList.map(this.renderUser);
 	}
 
 	renderUser = (value) => {

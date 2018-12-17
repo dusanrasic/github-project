@@ -14,9 +14,9 @@ class App extends Component {
     const {users} = this.props;
     return (
       <Provider store={store}>
-        <div className={CLASS}>
-          <Wrapper data={users}/>
-        </div>
+          <div className={CLASS}>
+            <Wrapper data={users}/>
+          </div>
       </Provider>
     );
   }

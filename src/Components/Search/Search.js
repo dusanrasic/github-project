@@ -12,6 +12,11 @@ const CLASS = 'el-Search';
 
 class Search extends Component {
 
+	static propTypes = {
+		searchUser: PropTypes.func.isRequired,
+		initializeApp: PropTypes.func.isRequired,
+	};
+
 	constructor(){
 		super();
 		this.state = {
@@ -33,6 +38,9 @@ class Search extends Component {
 
 	handleClick = () => {
 		const {searchUser} = this.props;
+		if (this.state.searchValue === ''){
+			return;
+		}
 		searchUser(this.state.searchValue);
 	}
 
@@ -50,10 +58,6 @@ class Search extends Component {
 			);
 	}
 }
-Search.propTypes = {
-	searchUser: PropTypes.func.isRequired,
-	initializeApp: PropTypes.func.isRequired,
-};
 
 const mapDispatchToProps = {
 	searchUser: searchUser,
