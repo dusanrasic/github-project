@@ -23,29 +23,23 @@ class Repos extends Component {
 
 	componentDidMount(){
 		const {reposUser, getRepos} = this.props;		
-
-		const noRepos = reposUser;
 		
-		if (!noRepos){
+		if (!reposUser){
 			return;
 		}
-		const {login} = reposUser;
-		getRepos(login);
+
+		getRepos(reposUser.login);
 	}
 
 	componentDidUpdate(prevProps){
 		const {reposUser, getRepos} = this.props;
 		
-		const noRepos = reposUser;
-		
-		if (!noRepos){
+		if (!reposUser){
 			return;
 		}
-		if (reposUser!== prevProps.repos){
-			
-			const {login} = reposUser;
-			
-			getRepos(login);
+
+		if (reposUser !== prevProps.reposUser){
+			getRepos(reposUser.login);
 		}
 	}
 
@@ -65,7 +59,9 @@ class Repos extends Component {
 		if (!value){
 			return;
 		}
+
 		let {id, description, html_url, name} = value;
+
 		return (
 			<div key={id}>
 				<Repo 
@@ -105,9 +101,15 @@ class Repos extends Component {
 		let {reposUser} = this.props;
 		return (
 			<div className={CLASS}>
-				{reposUser && this.renderUser()}
-				{reposUser && this.renderSeparator()}
-				{reposUser && this.renderRepos()}
+				{reposUser &&
+					(
+						<div className={CLASS+'-data'}>
+							{this.renderUser()}
+							{this.renderSeparator()}
+							{this.renderRepos()}
+						</div>
+					)
+				}
 			</div>
 		);
 	}

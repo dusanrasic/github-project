@@ -6,7 +6,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {initialize} from '../../Redux/Actions/UsersActions';
+import {getUsers} from '../../Redux/Actions/UsersActions';
 
 import './Wrapper.scss';
 
@@ -15,31 +15,48 @@ const CLASS='el-Wrapper';
 class Wrapper extends Component {
 
 	static propTypes = {
-		initializeApp: PropTypes.func.isRequired,
+		getUsers: PropTypes.func.isRequired,
 		usersList: PropTypes.array.isRequired,
 		error: PropTypes.object
 	};
 	
 	static defaultProps = {
 		usersList: [],
+		error: null
 	};
 
 	componentDidMount(){
-		const {initializeApp} = this.props;
-		initializeApp && initializeApp();
+		const {getUsers} = this.props;
+		getUsers && getUsers();
 	}
-	handleError = () => {
+
+	renderErrors = () => {
 		const {error} = this.props;
-		if (error){
-			return error;
+		if (!error){
+			return;
 		}
+		return Object.keys(error).map(this.renderError);
 	}
+
+	renderError = (value, key) => {
+		if (!value){
+			return;
+		}
+
+		let {message} = value;
+		return (
+			<div key={key}>
+				{message}
+			</div>
+		);
+	}
+
 	render() {
 		const {usersList} = this.props;
 		return (
 			<BrowserRouter>
 				<div className={CLASS}>
-						{this.handleError()}
+						{this.renderErrors()}
 						<div className={CLASS+'-data'}>
 							<Search />
 							<Users 
@@ -60,7 +77,7 @@ class Wrapper extends Component {
 }
 
 const mapDispatchToProps = {
-	initializeApp: initialize,
+	getUsers: getUsers,
 };
 
 const mapStateToProps = state => {

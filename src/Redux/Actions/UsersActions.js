@@ -1,7 +1,7 @@
 import * as types from './types';
 import * as api from '../../lib/api';
 
-export const initialize = () => (dispatch) => {
+export const getUsers = () => (dispatch) => {
 	dispatch({
 		type: types.INITIALIZE_START,
 	});

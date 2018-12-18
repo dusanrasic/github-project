@@ -4,7 +4,7 @@ import {Button} from '../Button/Button';
 
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {searchUser, initialize} from '../../Redux/Actions/UsersActions';
+import {searchUser, getUsers} from '../../Redux/Actions/UsersActions';
 
 import './Search.scss';
 
@@ -14,7 +14,7 @@ class Search extends Component {
 
 	static propTypes = {
 		searchUser: PropTypes.func.isRequired,
-		initializeApp: PropTypes.func.isRequired,
+		getUsers: PropTypes.func.isRequired,
 	};
 
 	constructor(){
@@ -26,8 +26,8 @@ class Search extends Component {
 
 	handleChange = (e) =>{
 		if (e.target.value === ''){
-			const {initializeApp} = this.props;
-			initializeApp && initializeApp();
+			const {getUsers} = this.props;
+			getUsers && getUsers();
 			// return;
 		}
 		this.setState({
@@ -61,7 +61,7 @@ class Search extends Component {
 
 const mapDispatchToProps = {
 	searchUser: searchUser,
-	initializeApp: initialize,
+	getUsers: getUsers,
 };
 
 export default connect(null, mapDispatchToProps)(Search);
