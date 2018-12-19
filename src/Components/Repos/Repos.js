@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import User from '../User/User';
 import Repo from '../Repo/Repo';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {getRepos} from '../../Redux/Actions/ReposActions';
+import { getRepos } from '../../Redux/Actions/ReposActions';
 
 import './Repos.scss';
 
 const CLASS = 'el-Repos';
 
-class Repos extends Component {	
-
+class Repos extends Component {
 	static propTypes = {
 		getRepos: PropTypes.func.isRequired,
 		reposList: PropTypes.array.isRequired,
@@ -21,95 +20,81 @@ class Repos extends Component {
 		reposList: [],
 	};
 
-	componentDidMount(){
-		const {reposUser, getRepos} = this.props;		
-		
-		if (!reposUser){
+	componentDidMount() {
+		const { reposUser, getRepos } = this.props;
+
+		if (!reposUser) {
 			return;
 		}
 
 		getRepos(reposUser.login);
 	}
 
-	componentDidUpdate(prevProps){
-		const {reposUser, getRepos} = this.props;
-		
-		if (!reposUser){
+	componentDidUpdate(prevProps) {
+		const { reposUser, getRepos } = this.props;
+
+		if (!reposUser) {
 			return;
 		}
 
-		if (reposUser !== prevProps.reposUser){
+		if (reposUser !== prevProps.reposUser) {
 			getRepos(reposUser.login);
 		}
 	}
 
 	renderRepos = () => {
-		const {reposList} = this.props;
+		const { reposList } = this.props;
 		const noData = reposList && !reposList.length;
 
-
-		if (noData){
+		if (noData) {
 			return 'No repositories...';
 		}
 
 		return reposList.map(this.renderRepo);
-	}
+	};
 
-	renderRepo = (value) => {
-		if (!value){
+	renderRepo = value => {
+		if (!value) {
 			return;
 		}
 
-		let {id, description, html_url, name} = value;
+		let { id, description, html_url, name } = value;
 
 		return (
 			<div key={id}>
-				<Repo 
-					description={description}
-					url={html_url}
-					name={name}
-				/>
+				<Repo description={description} url={html_url} name={name} />
 			</div>
 		);
-	}
+	};
 
 	renderUser = () => {
-		let {reposUser} = this.props;
-		let {avatar_url, login} = reposUser;
+		let { reposUser } = this.props;
+		let { avatar_url, login } = reposUser;
 
 		const noRepos = reposUser;
 
-		if (!noRepos){
+		if (!noRepos) {
 			return 'No selected user...';
 		}
 
-		return (
-			<User 
-				avatar={avatar_url}
-				login={login}
-			/>
-		);
-	}
+		return <User avatar={avatar_url} login={login} />;
+	};
 
 	renderSeparator = () => {
-		return (
-			<div className='el-Separator'/>
-		);
-	}
+		return <div className="el-Separator" />;
+	};
 
 	render() {
-		let {reposUser} = this.props;
+		let { reposUser } = this.props;
 		return (
 			<div className={CLASS}>
-				{reposUser &&
-					(
-						<div className={CLASS+'-data'}>
-							{this.renderUser()}
-							{this.renderSeparator()}
-							{this.renderRepos()}
-						</div>
-					)
-				}
+				{reposUser && (
+					<div className={CLASS + '-data'}>
+						{this.renderUser()}
+						{this.renderSeparator()}
+						{this.renderRepos()}
+					</div>
+				)}
 			</div>
 		);
 	}
@@ -124,4 +109,7 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Repos);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(Repos);
