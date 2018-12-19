@@ -7,16 +7,16 @@ import store from '../../lib/store';
 
 import './App.scss';
 
-const CLASS='el-App';
+const CLASS = 'el-App';
 
 class App extends Component {
   render() {
-    const {users} = this.props;
+    const { users } = this.props;
     return (
       <Provider store={store}>
-          <div className={CLASS}>
-            <Wrapper data={users}/>
-          </div>
+        <div className={CLASS}>
+          <Wrapper data={users} />
+        </div>
       </Provider>
     );
   }

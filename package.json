@@ -22,7 +22,7 @@
     "eslint-loader": "2.1.1",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-jsx-a11y": "6.1.2",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-prettier": "^3.0.0",
     "file-loader": "2.0.0",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
     "fs-extra": "7.0.0",
@@ -122,10 +122,12 @@
   },
   "devDependencies": {
     "eslint": "^5.10.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0"
   }
 }

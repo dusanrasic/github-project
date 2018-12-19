@@ -1,15 +1,20 @@
 {
 	"settings": {
 		"react": {
-		  "createClass": "createReactClass",
-		  "pragma": "React",
-		  "version": "latest", 
-		  "flowVersion": "0.53"
+			"createClass": "createReactClass",
+			"pragma": "React",
+			"version": "latest",
+			"flowVersion": "0.53"
 		},
 		"propWrapperFunctions": [
 			"forbidExtraProps",
-			{"property": "freeze", "object": "Object"},
-			{"property": "myFavoriteWrapper"}
+			{
+				"property": "freeze",
+				"object": "Object"
+			},
+			{
+				"property": "myFavoriteWrapper"
+			}
 		]
 	},
 	"root": true,
@@ -24,7 +29,9 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"react-app"
+		"react-app",
+		"prettier",
+		"prettier/react"
 	],
 	"parser": "babel-eslint",
 	"parserOptions": {
@@ -38,7 +45,8 @@
 		"sourceType": "module"
 	},
 	"plugins": [
-		"react"
+		"react",
+		"prettier"
 	],
 	"globals": {
 		"chai": true,
@@ -65,7 +73,7 @@
 		"new-cap": "warn",
 		"no-case-declarations": "off",
 		"no-dupe-args": "error",
-    	"no-dupe-class-members": "error",
+		"no-dupe-class-members": "error",
 		"no-empty": [
 			"warn",
 			{
@@ -97,6 +105,14 @@
 				"allowTemplateLiterals": true
 			}
 		],
+		"prettier/prettier": [
+			"error",
+			{
+				"trailingComma": "es5",
+				"singleQuote": true,
+				"printWidth": 80
+			}
+		],
 		"space-infix-ops": "off",
 		"strict": "off",
 		"no-fallthrough": "off",
@@ -122,6 +138,14 @@
 		"react/jsx-no-target-blank": "warn",
 
 		"jsx-a11y/href-no-hash": "off",
-		"jsx-a11y/alt-text": "off"
+		"jsx-a11y/alt-text": "off",
+		"jsx-a11y/anchor-is-valid": [
+			"warn",
+			{
+				"aspects": [
+					"invalidHref"
+				]
+			}
+		]
 	}
 }

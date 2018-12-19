@@ -3,6 +3,6 @@ import UsersReducer from './UsersReducer';
 import ReposReducer from './ReposReducer';
 
 export default combineReducers({
-	users: UsersReducer,
-	repos: ReposReducer
+  users: UsersReducer,
+  repos: ReposReducer,
 });
